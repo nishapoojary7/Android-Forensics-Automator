@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block title %}Difference Extractor - CyberSec Toolkit{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>🧪 Compare Pulled Snapshots</h2>
+
+    <form method="POST">
+        <label for="snapshot1">📁 First Snapshot:</label>
+        <select name="snapshot1" required>
+            {% for snap in snapshots %}
+                <option value="{{ snap }}">{{ snap }}</option>
+            {% endfor %}
+        </select>
+
+        <br><br>
+
+        <label for="snapshot2">📁 Second Snapshot:</label>
+        <select name="snapshot2" required>
+            {% for snap in snapshots %}
+                <option value="{{ snap }}">{{ snap }}</option>
+            {% endfor %}
+        </select>
+
+        <br><br>
+        <button type="submit">Compare</button>
+    </form>
+
+    {% if differences %}
+        <hr>
+        <h3>🧾 Differences Found:</h3>
+        <pre>{{ differences | tojson(indent=4) }}</pre>
+        
+    {% endif %}
+</div>
+<!-- 🟢 Back to Home -->
+<br>
+<a href="{{ url_for('home') }}">
+    <button style="margin-top: 10px;">🏠 Back to Home</button>
+</a>
+{% endblock %}

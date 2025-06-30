@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block title %}APK Analyzer - CyberSec Toolkit{% endblock %}
+{% block content %}
+<h2>📦 Upload and Analyze APK</h2>
+<form method="POST" enctype="multipart/form-data">
+    <label for="apk_file">Select APK file:</label>
+    <input type="file" name="apk_file" required accept=".apk">
+    <button type="submit">Analyze and Install</button>
+</form>
+
+
+
+<!-- 🟢 Back to Home -->
+<br>
+<a href="{{ url_for('home') }}">
+    <button style="margin-top: 10px;">🏠 Back to Home</button>
+</a>
+{% endblock %}
