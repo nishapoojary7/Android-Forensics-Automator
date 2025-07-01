@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block title %}Emulator - CyberSec Toolkit{% endblock %}
+{% block content %}
+    <h2>🤖 Upload Action Script</h2>
+    <form method="POST" enctype="multipart/form-data">
+        <label for="action_file">Select .txt action script:</label>
+        <input type="file" name="action_file" required accept=".txt">
+        <button type="submit">Execute Script</button>
+    </form>
+    <!-- 🟢 Back to Home -->
+<br>
+<a href="{{ url_for('home') }}">
+    <button style="margin-top: 10px;">🏠 Back to Home</button>
+</a>
+{% endblock %}
