@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}CyberSec Toolkit{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="navbar">
+    <a href="{{ url_for('home') }}">🏠 Home</a>
+    <a href="{{ url_for('apk') }}">📦 APK Analyzer</a>
+    <a href="{{ url_for('emulator') }}">🤖 Emulator Script</a>
+    <a href="{{ url_for('path_analysis') }}">📂 Path Analysis</a>
+    <a href="{{ url_for('retriever_route') }}">📥 Retriever</a>
+    <a href="{{ url_for('difference_extractor_route') }}">📤 Difference Extractor</a>
+</div>
+
+<div class="content">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">{{ message|safe }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>

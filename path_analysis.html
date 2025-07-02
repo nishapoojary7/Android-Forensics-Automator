@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block title %}Path Detector{% endblock %}
+
+{% block content %}
+<h2>📂 APK Path Analysis</h2>
+
+<form method="POST" enctype="multipart/form-data" style="margin-bottom: 20px;">
+    <label>Select APK File:</label><br>
+    <input type="file" name="apk_file" accept=".apk" style="margin: 10px 0;"><br>
+    <button type="submit">Analyze</button>
+</form>
+
+{% if static_result %}
+<hr>
+<h3>🔍 Static Analysis</h3>
+<div style="background-color: #000; color: #0f0; padding: 10px; border-radius: 8px; max-height: 250px; overflow-y: auto; white-space: pre-wrap; word-break: break-word;">
+    <pre>{{ static_result | tojson(indent=2) }}</pre>
+</div>
+
+<h3 style="margin-top: 20px;">⚙️ Dynamic Analysis</h3>
+<div style="background-color: #000; color: #0ff; padding: 10px; border-radius: 8px; max-height: 250px; overflow-y: auto; white-space: pre-wrap; word-break: break-word;">
+    <pre>{{ dynamic_result | tojson(indent=2) }}</pre>
+</div>
+{% endif %}
+<!-- 🟢 Back to Home -->
+<br>
+<a href="{{ url_for('home') }}">
+    <button style="margin-top: 10px;">🏠 Back to Home</button>
+</a>
+{% endblock %}
