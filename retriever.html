@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block title %}Snapshot Retriever - CyberSec Toolkit{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>📂 Snapshot Retriever</h2>
+
+    <form method="POST">
+        <label for="package">Enter Package Name:</label>
+        <input type="text" name="package" placeholder="e.g., com.termux" required>
+
+        <p><strong>📁 Select Folders to Pull:</strong></p>
+        <label><input type="checkbox" name="paths" value="/data/data/com.termux"> App Private Folder</label><br>
+        <label><input type="checkbox" name="paths" value="/sdcard/Download"> /sdcard/Download</label><br>
+        <label><input type="checkbox" name="paths" value="/sdcard/Documents"> /sdcard/Documents</label><br>
+
+        <br>
+        <button type="submit">Pull Snapshots</button>
+    </form>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">{{ message|safe }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+</div>
+<!-- 🟢 Back to Home -->
+<br>
+<a href="{{ url_for('home') }}">
+    <button style="margin-top: 10px;">🏠 Back to Home</button>
+</a>
+{% endblock %}
